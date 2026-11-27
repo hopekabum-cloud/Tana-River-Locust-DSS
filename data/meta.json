@@ -1,0 +1,63 @@
+{
+  "study_area": "Tana River County, Kenya",
+  "system_name": "Tana River Desert Locust Risk",
+  "has_climate": true,
+  "has_projections": true,
+  "years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "bounds": {
+    "west": 38.42105729162167,
+    "east": 40.75217479072336,
+    "north": 0.3272360761767876,
+    "south": -3.072871721164211
+  },
+  "grid": {
+    "left": 38.42105729162167,
+    "top": 0.3272360761767876,
+    "res": 0.0044915558749550845,
+    "width": 519,
+    "height": 757
+  },
+  "classes": [
+    {
+      "code": 1,
+      "name": "Very Low",
+      "colour": "#1a9641",
+      "guidance": "Routine monitoring."
+    },
+    {
+      "code": 2,
+      "name": "Low",
+      "colour": "#a6d96a",
+      "guidance": "Maintain surveillance."
+    },
+    {
+      "code": 3,
+      "name": "Moderate",
+      "colour": "#fee08b",
+      "guidance": "Strengthen monitoring and assess environmental conditions."
+    },
+    {
+      "code": 4,
+      "name": "High",
+      "colour": "#fdae61",
+      "guidance": "Prioritise field surveillance and preparedness."
+    },
+    {
+      "code": 5,
+      "name": "Very High",
+      "colour": "#d7191c",
+      "guidance": "Prioritise verification, monitoring and preparedness planning."
+    }
+  ],
+  "score_max": 0.8750138282775879,
+  "basin_area_km2": 45042.6,
+  "built": "2026-11-27T08:22"
+}

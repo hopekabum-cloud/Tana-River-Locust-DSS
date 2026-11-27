@@ -1,0 +1,58 @@
+{
+  "final_model": {
+    "title": "Final DSS model (4 predictors)",
+    "rf": {
+      "SAVI": 0.0663,
+      "Rainfall": 0.2739,
+      "PCI": -0.031,
+      "SoilMoisture": 0.0177
+    },
+    "xgb": {
+      "SAVI": 0.0522,
+      "Rainfall": 0.3759,
+      "PCI": -0.0027,
+      "SoilMoisture": -0.0259
+    }
+  },
+  "objective1_no_wind": {
+    "title": "Objective 1 analysis, all variables without wind",
+    "rf": {
+      "Temperature": 0.051226,
+      "Rainfall": 0.094222,
+      "Humidity": 0.093398,
+      "PCI": 0.080127,
+      "SoilMoisture": 0.070097,
+      "NDVI": 0.022594,
+      "EVI": 0.02494,
+      "SAVI": 0.036295,
+      "LST": 0.205507,
+      "TCI": 0.014701,
+      "VHI": 0.017039,
+      "Elevation": 0.086258,
+      "Slope": 0.008421,
+      "Elev_std": 0.036722,
+      "TWI": 0.011988,
+      "SoilType": 0.10454,
+      "LULC": 0.041926
+    },
+    "xgb": {
+      "Temperature": 0.040145,
+      "Rainfall": 0.055212,
+      "Humidity": 0.048169,
+      "PCI": 0.060282,
+      "SoilMoisture": 0.032014,
+      "NDVI": 0.016329,
+      "EVI": 0.031352,
+      "SAVI": 0.034774,
+      "LST": 0.267658,
+      "TCI": 0.015567,
+      "VHI": 0.019113,
+      "Elevation": 0.047171,
+      "Slope": 0.013187,
+      "Elev_std": 0.021209,
+      "TWI": 0.012623,
+      "SoilType": 0.153077,
+      "LULC": 0.132119
+    }
+  }
+}

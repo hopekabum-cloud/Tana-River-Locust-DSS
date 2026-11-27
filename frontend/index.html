@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tana River Desert Locust Risk Decision Support System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#dashboard" aria-label="Home">
+      <svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="9" fill="none" stroke="#c99a3b" stroke-width="2"/><path d="M9 27 C14 18, 22 14, 31 13" fill="none" stroke="#e9e2cf" stroke-width="2.2" stroke-linecap="round"/><ellipse cx="22" cy="20" rx="7" ry="3.2" transform="rotate(-28 22 20)" fill="none" stroke="#e9e2cf" stroke-width="2"/><path d="M17 23 L13 30 M21 22 L19 31 M25 19 L28 26" stroke="#e9e2cf" stroke-width="1.8" stroke-linecap="round"/><circle cx="29" cy="14" r="2" fill="#c99a3b"/></svg>
+      <span><b id="system-name">Tana River Desert Locust Risk</b><small>Decision Support System</small></span>
+    </a>
+    <nav id="nav" aria-label="Main">
+      <a href="#dashboard" data-view="dashboard">Dashboard</a>
+      <a href="#map" data-view="map">Historical Risk Maps</a>
+      <a href="#environment" data-view="environment">Environmental Factors</a>
+      <a href="#warning" data-view="warning">Early Warning</a>
+      <a href="#climate" data-view="climate">Climate Projections</a>
+      <a href="#model" data-view="model">Model</a>
+      <a href="#about" data-view="about">About</a>
+    </nav>
+    <div class="year-box">
+      <label for="year">Year</label>
+      <select id="year"></select>
+    </div>
+  </div>
+</header>
+<p id="load-error" class="error" hidden></p>
+
+<main>
+<!-- DASHBOARD ------------------------------------------------------------>
+<section id="view-dashboard" class="view">
+  <div class="row">
+    <div class="hero">
+      <p class="eyebrow" id="study-name">Tana River County, Kenya</p>
+      <h1>Desert locust risk, early warning and preparedness</h1>
+      <p>Annual maps of where environmental conditions most resemble those at known desert locust records, from Random Forest and XGBoost models. Use them to compare years, see where risk concentrates and plan surveillance.</p>
+      <div class="hero-actions"><a class="btn gold" href="#map">Open the risk map</a><a class="btn ghost" href="#warning">Early warning summary</a></div>
+    </div>
+    <div class="card situation">
+      <h2 id="situation-title">Risk situation</h2>
+      <p id="situation-text" class="lead"></p>
+      <dl class="facts">
+        <dt>Mapped area</dt><dd id="fact-area"></dd>
+        <dt>High + Very High</dt><dd id="fact-hv"></dd>
+        <dt>Years available</dt><dd id="fact-years"></dd>
+      </dl>
+    </div>
+  </div>
+  <div id="risk-cards" class="risk-cards"></div>
+  <div class="row">
+    <div class="card map-card grow">
+      <div class="card-head"><h2 id="dash-map-title">Risk map</h2><a href="#map">Full map →</a></div>
+      <div id="dash-map" class="map small"></div>
+    </div>
+    <div class="card side">
+      <h2>Share of mapped area by class</h2>
+      <canvas id="dash-chart" height="260"></canvas>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Risk distribution, all years</h2>
+    <canvas id="years-chart" height="110"></canvas>
+  </div>
+</section>
+
+<!-- RISK MAP --------------------------------------------------------------->
+<section id="view-map" class="view" hidden>
+  <div class="row">
+    <div class="card map-card grow">
+      <div id="main-map" class="map large"></div>
+    </div>
+    <aside class="card side">
+      <h2>Map controls</h2>
+      <div class="year-step">
+        <button type="button" id="prev-year" aria-label="Previous year">‹</button>
+        <span id="map-year" class="mono big"></span>
+        <button type="button" id="next-year" aria-label="Next year">›</button>
+      </div>
+      <fieldset>
+        <legend>Risk layer</legend>
+        <label><input type="radio" name="risk-layer" value="classes" checked> Relative risk class</label>
+        <label><input type="radio" name="risk-layer" value="high_very_high"> High and Very High only</label>
+        <label><input type="radio" name="risk-layer" value="score"> Suitability score</label>
+        <label><input type="checkbox" id="risk-on" checked> Show risk layer</label>
+      </fieldset>
+      <label for="opacity" class="lbl">Opacity</label>
+      <input type="range" id="opacity" min="0.1" max="1" step="0.05" value="0.8">
+      <h3>Statistics</h3>
+      <div class="table-wrap"><table id="stats-table"><thead><tr><th>Class</th><th>Pixels</th><th>km²</th><th>%</th></tr></thead><tbody></tbody></table></div>
+      <p class="small" id="stats-note"></p>
+      <h3>Downloads</h3>
+      <p class="small"><a id="dl-classes" href="#">Risk class GeoTIFF</a> · <a id="dl-score" href="#">Suitability score GeoTIFF</a></p>
+      <p class="small">Click the map to read the class, score and environmental values at a location.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- ENVIRONMENT ------------------------------------------------------------>
+<section id="view-environment" class="view" hidden>
+  <div class="row">
+    <div class="card map-card grow">
+      <div id="env-map" class="map large"></div>
+    </div>
+    <aside class="card side">
+      <h2>Environmental factors</h2>
+      <label for="env-var" class="lbl">Variable</label>
+      <select id="env-var"></select>
+      <p class="small" id="env-source"></p>
+      <div id="env-legend"></div>
+      <h3>Basin average by year</h3>
+      <canvas id="env-chart" height="200"></canvas>
+      <p class="small" id="env-note"></p>
+    </aside>
+  </div>
+</section>
+
+<!-- EARLY WARNING ---------------------------------------------------------->
+<section id="view-warning" class="view" hidden>
+  <div class="row">
+    <div class="card grow">
+      <h2 id="warn-title">Early warning summary</h2>
+      <p class="lead" id="warn-text"></p>
+      <div id="warn-bar" class="bar" aria-hidden="true"></div>
+      <div class="table-wrap"><table id="warn-table"><thead><tr><th>Risk class</th><th>Area (km²)</th><th>Share</th><th>Suggested preparedness action</th></tr></thead><tbody></tbody></table></div>
+      <p class="small">These are suggested preparedness actions linked to mapped relative risk. They are not evidence of locust presence or an outbreak. Confirm through ground surveys and official desert locust reporting before any control action.</p>
+    </div>
+    <div class="card side map-card">
+      <h2>Where High and Very High risk is mapped</h2>
+      <div id="warn-map" class="map medium"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIMATE OUTLOOK -------------------------------------------------------->
+<section id="view-climate" class="view" hidden>
+  <div class="tabs" role="tablist">
+    <button class="tab active" data-tab="proj" role="tab">Projected locust risk</button>
+    <button class="tab" data-tab="clim" role="tab">Climate change outlook</button>
+  </div>
+
+  <div id="tab-proj">
+  <p id="proj-missing" class="card" hidden>Climate-informed risk projections have not been added yet. Run Steps 10–12, then Steps 4, 5 and 8.</p>
+  <div id="proj-content">
+  <div class="row">
+    <div class="card map-card grow">
+      <div id="proj-map" class="map large"></div>
+    </div>
+    <aside class="card side">
+      <h2>Projected climatic suitability</h2>
+      <label for="proj-period" class="lbl">Period</label>
+      <select id="proj-period"></select>
+      <label for="proj-scen" class="lbl">Emissions scenario</label>
+      <select id="proj-scen"></select>
+      <fieldset><legend>Show</legend>
+        <label><input type="radio" name="proj-view" value="risk" checked> Projected risk classes</label>
+        <label><input type="radio" name="proj-view" value="change"> Change from 1995–2014</label>
+        <label><input type="radio" name="proj-view" value="agreement"> Climate-model agreement</label>
+      </fieldset>
+      <p class="lead" id="proj-text"></p>
+      <h3>Share of basin in each class</h3>
+      <div class="small">Baseline 1995–2014</div><div class="bar" id="proj-bar-base"></div>
+      <div class="small" id="proj-bar-label">Selected projection</div><div class="bar" id="proj-bar-sel"></div>
+    </aside>
+  </div>
+  <div class="row">
+    <div class="card grow">
+      <h2>High + Very High area, all projections</h2>
+      <canvas id="proj-chart" height="110"></canvas>
+      <p class="small">Dot: median of the climate models. Bar: 10th–90th percentile of the models. Dashed line: 1995–2014 baseline.</p>
+    </div>
+    <div class="card side">
+      <h2>How these maps are made</h2>
+      <dl class="facts" id="proj-facts"></dl>
+      <p class="small" id="proj-method"></p>
+      <p class="small proj-note"><b>Exploratory module.</b> These are climate-informed projections of suitability, not forecasts of locust outbreaks.</p>
+    </div>
+  </div>
+  </div>
+  </div>
+
+  <div id="tab-clim" hidden>
+  <p id="clim-missing" class="card" hidden>The CMIP6 climate outlook has not been added yet. Run Step 9, then Steps 4, 5 and 8.</p>
+  <div class="row" id="clim-content">
+    <div class="card map-card grow">
+      <div id="clim-map" class="map large"></div>
+    </div>
+    <aside class="card side">
+      <h2>Climate outlook (CMIP6)</h2>
+      <label for="clim-var" class="lbl">Variable</label>
+      <select id="clim-var"></select>
+      <label for="clim-scen" class="lbl">Emissions scenario</label>
+      <select id="clim-scen"></select>
+      <label for="clim-period" class="lbl">Period</label>
+      <select id="clim-period"></select>
+      <p class="lead" id="clim-text" style="margin-top:14px"></p>
+      <h3>Basin average change, all scenarios</h3>
+      <canvas id="clim-chart" height="230"></canvas>
+      <p class="small" id="clim-note"></p>
+    </aside>
+  </div>
+  </div>
+</section>
+
+<!-- MODEL ------------------------------------------------------------------>
+<section id="view-model" class="view" hidden>
+  <div class="row">
+    <div class="card grow">
+      <h2>Model performance</h2>
+      <canvas id="perf-chart" height="150"></canvas>
+      <p class="small" id="perf-note"></p>
+    </div>
+    <div class="card side">
+      <h2>How the risk maps are made</h2>
+      <p>Random Forest and XGBoost each learn the environmental conditions at desert locust records compared with background points. Their scores are combined into an ensemble score for every 500 m cell, and the score is grouped into five relative classes.</p>
+      <dl class="facts" id="model-facts"></dl>
+    </div>
+  </div>
+  <div class="row" id="importance-row"></div>
+</section>
+
+<!-- ABOUT ------------------------------------------------------------------>
+<section id="view-about" class="view" hidden>
+  <div class="card prose">
+    <h2>About the system</h2>
+    <p><b>Research project.</b> Development of a GIS-Based Decision Support System for Desert Locust Risk Prediction and Early Warning in the Lower Tana River Basin, Kenya.</p>
+    <p><b>Study area.</b> <span id="about-area"></span></p>
+    <p><b>Purpose.</b> To visualise relative desert locust risk by year, explore environmental conditions, summarise the distribution of risk and support early warning and preparedness planning by county officers, researchers and decision-makers.</p>
+    <p><b>Environmental data.</b> Rainfall and precipitation concentration (CHIRPS), air temperature, humidity and soil moisture (ERA5-Land), vegetation indices and land surface temperature (Landsat 8/9), terrain (SRTM, MERIT Hydro), soil texture (OpenLandMap) and land cover (ESA WorldCover). Wind speed and wind direction are not used.</p>
+    <p><b>Modelling approach.</b> Random Forest and XGBoost trained on desert locust occurrence and background points; an ensemble score is classified into Very Low, Low, Moderate, High and Very High.</p>
+    <p><b>Climate-informed risk projections (exploratory).</b> A separate climate-only model (Random Forest and XGBoost, trained on 1995–2014 average climate at the same locust records) is applied to CMIP6 projections for 2025–2032, 2033–2040 and 2025–2040 under SSP2-4.5 and SSP5-8.5, using the delta method. These maps show projected climatic suitability, not forecasts of locust outbreaks, and are compared only with the same model's 1995–2014 baseline, not with the annual risk maps.</p>
+    <p><b>Climate outlook.</b> Projected changes in rainfall, temperature, humidity and rainfall concentration come from NASA NEX-GDDP-CMIP6 (bias-corrected, downscaled CMIP6 models, about 27 km) under SSP2-4.5 and SSP5-8.5, compared with 1995–2014. They describe possible future climate conditions, not future locust risk maps.</p>
+    <p><b>Limitations.</b> Classes show relative environmental suitability, not infestation probability. Models learn from 2020 records, so other years are compared with those conditions. Annual layers do not capture short-term swarm movement or control operations. Some environmental layers may not cover the full basin.</p>
+    <p><b>Intended use.</b> Risk visualisation, early warning and preparedness planning alongside field surveillance, not instead of it.</p>
+  </div>
+</section>
+</main>
+<footer>
+  <p class="footer-note"><b>How to read these maps.</b> They show <b>relative environmental suitability</b> for the desert locust, estimated by statistical models. They are not forecasts, do not confirm locust presence and do not replace field surveillance.</p>
+  <p>Tana River Desert Locust Risk DSS · research decision-support tool · <span id="built"></span></p>
+</footer>
+
+<script src="/vendor/leaflet/leaflet.js"></script>
+<script src="/vendor/chart.umd.min.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>

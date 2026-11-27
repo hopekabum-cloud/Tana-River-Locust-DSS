@@ -1,0 +1,6 @@
+_backup*/
+__pycache__/
+*.pyc
+*.log
+documentation/audit_rasters_*.csv
+.ipynb_checkpoints/

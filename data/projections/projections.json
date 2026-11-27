@@ -1,0 +1,362 @@
+{
+  "title": "Climate-informed projected locust risk (exploratory)",
+  "note": "Projected climatic suitability for the desert locust under CMIP6 scenarios. Not a forecast of locust outbreaks.",
+  "model": {
+    "predictors": [
+      "Rain_OND",
+      "Sand_pct",
+      "Slope",
+      "Temp_range"
+    ],
+    "units": {
+      "Rain_OND": "mm",
+      "Sand_pct": "%",
+      "Slope": "degrees",
+      "Temp_range": "°C"
+    },
+    "ensemble": "geometric mean of Random Forest and XGBoost",
+    "sampling": "cfg_accessible_200km_10to1",
+    "metrics_file": "climate_model_test_metrics.csv",
+    "metrics": [
+      {
+        "model": "Random Forest",
+        "roc_auc": 0.885,
+        "pr_auc": 0.225,
+        "tss": 0.706
+      },
+      {
+        "model": "XGBoost",
+        "roc_auc": 0.852,
+        "pr_auc": 0.197,
+        "tss": 0.62
+      },
+      {
+        "model": "Ensemble (geometric mean)",
+        "roc_auc": 0.867,
+        "pr_auc": 0.212,
+        "tss": 0.67
+      }
+    ],
+    "importance": {
+      "rf": {
+        "Rain_OND": 0.3929,
+        "Slope": 0.0651,
+        "Temp_range": 0.0029,
+        "Sand_pct": -0.0123
+      },
+      "xgb": {
+        "Rain_OND": 0.3777,
+        "Slope": 0.1059,
+        "Temp_range": -0.0153,
+        "Sand_pct": 0.0122
+      }
+    },
+    "excluded": {
+      "Spec_hum": "outside training range over 5-25% of the basin; negligible importance",
+      "PCI_clim": "outside training range over 8% of the basin; negligible importance"
+    },
+    "dropped_collinear": {
+      "Solar_rad": "|r| = 0.79 with Rain_OND",
+      "Rain_MAM": "|r| = 0.92 with Rain_OND",
+      "Aridity": "|r| = 0.92 with Rain_OND",
+      "Rain_annual": "|r| = 0.92 with Rain_OND",
+      "Water_balance": "|r| = 0.92 with Rain_OND",
+      "PET": "|r| = 0.89 with Rain_OND",
+      "RH": "|r| = 0.81 with Rain_OND",
+      "Wet_days": "|r| = 0.73 with Rain_OND",
+      "Hot_days": "|r| = 0.81 with Rain_OND",
+      "Temp_mean": "|r| = 0.80 with Rain_OND",
+      "Temp_max": "|r| = 0.79 with Rain_OND",
+      "Temp_min": "|r| = 0.77 with Rain_OND",
+      "Elevation": "|r| = 0.73 with Rain_OND"
+    },
+    "n_train": 3019,
+    "n_test": 859,
+    "split": "new 1-degree spatial blocks, about 20% of blocks held out (seed 42)",
+    "n_presence": 364
+  },
+  "baseline_period": "1995–2014",
+  "climate_source": "NASA NEX-GDDP-CMIP6 (0.25°), delta method on CHIRPS + ERA5-Land baseline",
+  "n_models": 27,
+  "models": [
+    "ACCESS-CM2",
+    "ACCESS-ESM1-5",
+    "BCC-CSM2-MR",
+    "CMCC-CM2-SR5",
+    "CMCC-ESM2",
+    "CNRM-CM6-1",
+    "CNRM-ESM2-1",
+    "CanESM5",
+    "EC-Earth3",
+    "EC-Earth3-Veg-LR",
+    "FGOALS-g3",
+    "GFDL-CM4",
+    "GFDL-ESM4",
+    "GISS-E2-1-G",
+    "HadGEM3-GC31-LL",
+    "INM-CM4-8",
+    "INM-CM5-0",
+    "KACE-1-0-G",
+    "KIOST-ESM",
+    "MIROC-ES2L",
+    "MPI-ESM1-2-HR",
+    "MPI-ESM1-2-LR",
+    "MRI-ESM2-0",
+    "NorESM2-LM",
+    "NorESM2-MM",
+    "TaiESM1",
+    "UKESM1-0-LL"
+  ],
+  "scenarios": {
+    "ssp245": "SSP2-4.5 (moderate emissions)",
+    "ssp585": "SSP5-8.5 (high emissions)"
+  },
+  "periods": {
+    "2025_2032": "2025–2032 (begins near present)",
+    "2033_2040": "2033–2040",
+    "2025_2040": "2025–2040"
+  },
+  "thresholds": [
+    0.0103,
+    0.018,
+    0.1491,
+    0.6001
+  ],
+  "threshold_basis": "10th, 25th, 50th and 75th percentiles of cross-validated scores at known locust records",
+  "classes": [
+    {
+      "code": 1,
+      "name": "Very Low",
+      "colour": "#1a9641"
+    },
+    {
+      "code": 2,
+      "name": "Low",
+      "colour": "#a6d96a"
+    },
+    {
+      "code": 3,
+      "name": "Moderate",
+      "colour": "#fee08b"
+    },
+    {
+      "code": 4,
+      "name": "High",
+      "colour": "#fdae61"
+    },
+    {
+      "code": 5,
+      "name": "Very High",
+      "colour": "#d7191c"
+    }
+  ],
+  "bounds": {
+    "west": 38.42105729162167,
+    "east": 40.75217479072336,
+    "north": 0.3272360761767876,
+    "south": -3.072871721164211
+  },
+  "baseline": {
+    "map": "risk_baseline.png",
+    "class_pct": [
+      86.2,
+      8.2,
+      5.4,
+      0.2,
+      0.1
+    ],
+    "high_very_high_pct": 0.3,
+    "mean_score": 0.0066,
+    "outside_training_pct": 0.2
+  },
+  "projections": {
+    "ssp245_2025_2032": {
+      "scenario": "ssp245",
+      "period": "2025_2032",
+      "label": "SSP2-4.5 · 2025–2032 (begins near present)",
+      "map": "risk_ssp245_2025_2032.png",
+      "change_map": "change_ssp245_2025_2032.png",
+      "agreement_map": "agreement_ssp245_2025_2032.png",
+      "class_pct": [
+        82.2,
+        12.0,
+        5.7,
+        0.2,
+        0.0
+      ],
+      "high_very_high_pct": 0.2,
+      "high_very_high_change_pp": -0.1,
+      "high_very_high_models_median": 0.2,
+      "high_very_high_models_p10_p90": [
+        0.2,
+        0.4
+      ],
+      "mean_score_change": 0.0002,
+      "area_increase_pct": 58.5,
+      "area_agree_two_thirds_pct": 83.9,
+      "outside_training_pct": 0.2,
+      "n_models": 27
+    },
+    "ssp245_2033_2040": {
+      "scenario": "ssp245",
+      "period": "2033_2040",
+      "label": "SSP2-4.5 · 2033–2040",
+      "map": "risk_ssp245_2033_2040.png",
+      "change_map": "change_ssp245_2033_2040.png",
+      "agreement_map": "agreement_ssp245_2033_2040.png",
+      "class_pct": [
+        83.2,
+        11.5,
+        5.1,
+        0.2,
+        0.0
+      ],
+      "high_very_high_pct": 0.2,
+      "high_very_high_change_pp": -0.1,
+      "high_very_high_models_median": 0.2,
+      "high_very_high_models_p10_p90": [
+        0.2,
+        0.3
+      ],
+      "mean_score_change": -0.0001,
+      "area_increase_pct": 58.6,
+      "area_agree_two_thirds_pct": 79.3,
+      "outside_training_pct": 0.2,
+      "n_models": 27
+    },
+    "ssp245_2025_2040": {
+      "scenario": "ssp245",
+      "period": "2025_2040",
+      "label": "SSP2-4.5 · 2025–2040",
+      "map": "risk_ssp245_2025_2040.png",
+      "change_map": "change_ssp245_2025_2040.png",
+      "agreement_map": "agreement_ssp245_2025_2040.png",
+      "class_pct": [
+        81.4,
+        12.9,
+        5.5,
+        0.2,
+        0.0
+      ],
+      "high_very_high_pct": 0.2,
+      "high_very_high_change_pp": -0.1,
+      "high_very_high_models_median": 0.2,
+      "high_very_high_models_p10_p90": [
+        0.2,
+        0.3
+      ],
+      "mean_score_change": 0.0003,
+      "area_increase_pct": 58.7,
+      "area_agree_two_thirds_pct": 82.4,
+      "outside_training_pct": 0.2,
+      "n_models": 27
+    },
+    "ssp585_2025_2032": {
+      "scenario": "ssp585",
+      "period": "2025_2032",
+      "label": "SSP5-8.5 · 2025–2032 (begins near present)",
+      "map": "risk_ssp585_2025_2032.png",
+      "change_map": "change_ssp585_2025_2032.png",
+      "agreement_map": "agreement_ssp585_2025_2032.png",
+      "class_pct": [
+        85.4,
+        9.4,
+        5.0,
+        0.2,
+        0.0
+      ],
+      "high_very_high_pct": 0.2,
+      "high_very_high_change_pp": -0.1,
+      "high_very_high_models_median": 0.3,
+      "high_very_high_models_p10_p90": [
+        0.2,
+        0.3
+      ],
+      "mean_score_change": -0.0002,
+      "area_increase_pct": 56.8,
+      "area_agree_two_thirds_pct": 66.5,
+      "outside_training_pct": 0.2,
+      "n_models": 27
+    },
+    "ssp585_2033_2040": {
+      "scenario": "ssp585",
+      "period": "2033_2040",
+      "label": "SSP5-8.5 · 2033–2040",
+      "map": "risk_ssp585_2033_2040.png",
+      "change_map": "change_ssp585_2033_2040.png",
+      "agreement_map": "agreement_ssp585_2033_2040.png",
+      "class_pct": [
+        82.0,
+        12.4,
+        5.4,
+        0.2,
+        0.0
+      ],
+      "high_very_high_pct": 0.2,
+      "high_very_high_change_pp": -0.1,
+      "high_very_high_models_median": 0.2,
+      "high_very_high_models_p10_p90": [
+        0.2,
+        0.3
+      ],
+      "mean_score_change": 0.0002,
+      "area_increase_pct": 59.6,
+      "area_agree_two_thirds_pct": 84.2,
+      "outside_training_pct": 0.2,
+      "n_models": 27
+    },
+    "ssp585_2025_2040": {
+      "scenario": "ssp585",
+      "period": "2025_2040",
+      "label": "SSP5-8.5 · 2025–2040",
+      "map": "risk_ssp585_2025_2040.png",
+      "change_map": "change_ssp585_2025_2040.png",
+      "agreement_map": "agreement_ssp585_2025_2040.png",
+      "class_pct": [
+        82.2,
+        11.8,
+        5.8,
+        0.2,
+        0.0
+      ],
+      "high_very_high_pct": 0.2,
+      "high_very_high_change_pp": -0.1,
+      "high_very_high_models_median": 0.2,
+      "high_very_high_models_p10_p90": [
+        0.2,
+        0.3
+      ],
+      "mean_score_change": 0.0003,
+      "area_increase_pct": 60.9,
+      "area_agree_two_thirds_pct": 83.3,
+      "outside_training_pct": 0.2,
+      "n_models": 27
+    }
+  },
+  "change_scale": {
+    "vmin": -0.0102,
+    "vmax": 0.0102,
+    "gradient": [
+      "#053061",
+      "#3783bb",
+      "#a7d0e4",
+      "#f7f6f6",
+      "#f7b799",
+      "#c94741",
+      "#67001f"
+    ]
+  },
+  "agreement_scale": {
+    "vmin": 0.5,
+    "vmax": 1.0,
+    "gradient": [
+      "#9e9ac8",
+      "#8a86bf",
+      "#796eb2",
+      "#6950a3",
+      "#5b3495",
+      "#4d1a89",
+      "#3f007d"
+    ]
+  }
+}

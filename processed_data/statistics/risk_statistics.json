@@ -1,0 +1,370 @@
+{
+  "years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "by_year": {
+    "2018": {
+      "year": 2018,
+      "classes": [
+        {
+          "code": 1,
+          "name": "Very Low",
+          "colour": "#1a9641",
+          "pixels": 94191,
+          "area_km2": 23485.6,
+          "percent": 51.97
+        },
+        {
+          "code": 2,
+          "name": "Low",
+          "colour": "#a6d96a",
+          "pixels": 35642,
+          "area_km2": 8887.1,
+          "percent": 19.67
+        },
+        {
+          "code": 3,
+          "name": "Moderate",
+          "colour": "#fee08b",
+          "pixels": 14223,
+          "area_km2": 3545.7,
+          "percent": 7.85
+        },
+        {
+          "code": 4,
+          "name": "High",
+          "colour": "#fdae61",
+          "pixels": 26162,
+          "area_km2": 6522.6,
+          "percent": 14.43
+        },
+        {
+          "code": 5,
+          "name": "Very High",
+          "colour": "#d7191c",
+          "pixels": 11013,
+          "area_km2": 2745.7,
+          "percent": 6.08
+        }
+      ],
+      "mapped_pixels": 181231,
+      "mapped_area_km2": 45186.7,
+      "basin_area_km2": 45042.6,
+      "basin_coverage_pct": 100.32,
+      "high_very_high_pct": 20.51,
+      "mean_score": 0.08309
+    },
+    "2019": {
+      "year": 2019,
+      "classes": [
+        {
+          "code": 1,
+          "name": "Very Low",
+          "colour": "#1a9641",
+          "pixels": 134797,
+          "area_km2": 33606.4,
+          "percent": 74.37
+        },
+        {
+          "code": 2,
+          "name": "Low",
+          "colour": "#a6d96a",
+          "pixels": 25912,
+          "area_km2": 6461.5,
+          "percent": 14.3
+        },
+        {
+          "code": 3,
+          "name": "Moderate",
+          "colour": "#fee08b",
+          "pixels": 10078,
+          "area_km2": 2513.7,
+          "percent": 5.56
+        },
+        {
+          "code": 4,
+          "name": "High",
+          "colour": "#fdae61",
+          "pixels": 10323,
+          "area_km2": 2574.9,
+          "percent": 5.7
+        },
+        {
+          "code": 5,
+          "name": "Very High",
+          "colour": "#d7191c",
+          "pixels": 120,
+          "area_km2": 29.9,
+          "percent": 0.07
+        }
+      ],
+      "mapped_pixels": 181230,
+      "mapped_area_km2": 45186.5,
+      "basin_area_km2": 45042.6,
+      "basin_coverage_pct": 100.32,
+      "high_very_high_pct": 5.77,
+      "mean_score": 0.0211
+    },
+    "2020": {
+      "year": 2020,
+      "classes": [
+        {
+          "code": 1,
+          "name": "Very Low",
+          "colour": "#1a9641",
+          "pixels": 90619,
+          "area_km2": 22590.9,
+          "percent": 49.99
+        },
+        {
+          "code": 2,
+          "name": "Low",
+          "colour": "#a6d96a",
+          "pixels": 34627,
+          "area_km2": 8632.1,
+          "percent": 19.1
+        },
+        {
+          "code": 3,
+          "name": "Moderate",
+          "colour": "#fee08b",
+          "pixels": 12059,
+          "area_km2": 3007.7,
+          "percent": 6.66
+        },
+        {
+          "code": 4,
+          "name": "High",
+          "colour": "#fdae61",
+          "pixels": 32004,
+          "area_km2": 7982.4,
+          "percent": 17.67
+        },
+        {
+          "code": 5,
+          "name": "Very High",
+          "colour": "#d7191c",
+          "pixels": 11922,
+          "area_km2": 2973.6,
+          "percent": 6.58
+        }
+      ],
+      "mapped_pixels": 181231,
+      "mapped_area_km2": 45186.7,
+      "basin_area_km2": 45042.6,
+      "basin_coverage_pct": 100.32,
+      "high_very_high_pct": 24.25,
+      "mean_score": 0.09023
+    },
+    "2021": {
+      "year": 2021,
+      "classes": [
+        {
+          "code": 1,
+          "name": "Very Low",
+          "colour": "#1a9641",
+          "pixels": 60309,
+          "area_km2": 15033.8,
+          "percent": 33.27
+        },
+        {
+          "code": 2,
+          "name": "Low",
+          "colour": "#a6d96a",
+          "pixels": 50516,
+          "area_km2": 12594.3,
+          "percent": 27.87
+        },
+        {
+          "code": 3,
+          "name": "Moderate",
+          "colour": "#fee08b",
+          "pixels": 21042,
+          "area_km2": 5247.1,
+          "percent": 11.61
+        },
+        {
+          "code": 4,
+          "name": "High",
+          "colour": "#fdae61",
+          "pixels": 31411,
+          "area_km2": 7833.7,
+          "percent": 17.34
+        },
+        {
+          "code": 5,
+          "name": "Very High",
+          "colour": "#d7191c",
+          "pixels": 17953,
+          "area_km2": 4477.8,
+          "percent": 9.91
+        }
+      ],
+      "mapped_pixels": 181231,
+      "mapped_area_km2": 45186.7,
+      "basin_area_km2": 45042.6,
+      "basin_coverage_pct": 100.32,
+      "high_very_high_pct": 27.25,
+      "mean_score": 0.12448
+    },
+    "2022": {
+      "year": 2022,
+      "classes": [
+        {
+          "code": 1,
+          "name": "Very Low",
+          "colour": "#1a9641",
+          "pixels": 9778,
+          "area_km2": 2437.3,
+          "percent": 5.39
+        },
+        {
+          "code": 2,
+          "name": "Low",
+          "colour": "#a6d96a",
+          "pixels": 12252,
+          "area_km2": 3054.4,
+          "percent": 6.76
+        },
+        {
+          "code": 3,
+          "name": "Moderate",
+          "colour": "#fee08b",
+          "pixels": 21682,
+          "area_km2": 5404.7,
+          "percent": 11.96
+        },
+        {
+          "code": 4,
+          "name": "High",
+          "colour": "#fdae61",
+          "pixels": 40129,
+          "area_km2": 10004.3,
+          "percent": 22.14
+        },
+        {
+          "code": 5,
+          "name": "Very High",
+          "colour": "#d7191c",
+          "pixels": 97390,
+          "area_km2": 24286.1,
+          "percent": 53.75
+        }
+      ],
+      "mapped_pixels": 181231,
+      "mapped_area_km2": 45186.7,
+      "basin_area_km2": 45042.6,
+      "basin_coverage_pct": 100.32,
+      "high_very_high_pct": 75.89,
+      "mean_score": 0.46234
+    },
+    "2023": {
+      "year": 2023,
+      "classes": [
+        {
+          "code": 1,
+          "name": "Very Low",
+          "colour": "#1a9641",
+          "pixels": 171861,
+          "area_km2": 42850.6,
+          "percent": 94.83
+        },
+        {
+          "code": 2,
+          "name": "Low",
+          "colour": "#a6d96a",
+          "pixels": 9367,
+          "area_km2": 2335.4,
+          "percent": 5.17
+        },
+        {
+          "code": 3,
+          "name": "Moderate",
+          "colour": "#fee08b",
+          "pixels": 3,
+          "area_km2": 0.7,
+          "percent": 0.0
+        },
+        {
+          "code": 4,
+          "name": "High",
+          "colour": "#fdae61",
+          "pixels": 0,
+          "area_km2": 0.0,
+          "percent": 0.0
+        },
+        {
+          "code": 5,
+          "name": "Very High",
+          "colour": "#d7191c",
+          "pixels": 0,
+          "area_km2": 0.0,
+          "percent": 0.0
+        }
+      ],
+      "mapped_pixels": 181231,
+      "mapped_area_km2": 45186.7,
+      "basin_area_km2": 45042.6,
+      "basin_coverage_pct": 100.32,
+      "high_very_high_pct": 0.0,
+      "mean_score": 0.00414
+    },
+    "2024": {
+      "year": 2024,
+      "classes": [
+        {
+          "code": 1,
+          "name": "Very Low",
+          "colour": "#1a9641",
+          "pixels": 67562,
+          "area_km2": 16845.4,
+          "percent": 37.28
+        },
+        {
+          "code": 2,
+          "name": "Low",
+          "colour": "#a6d96a",
+          "pixels": 57667,
+          "area_km2": 14379.2,
+          "percent": 31.82
+        },
+        {
+          "code": 3,
+          "name": "Moderate",
+          "colour": "#fee08b",
+          "pixels": 18906,
+          "area_km2": 4713.7,
+          "percent": 10.43
+        },
+        {
+          "code": 4,
+          "name": "High",
+          "colour": "#fdae61",
+          "pixels": 22956,
+          "area_km2": 5723.2,
+          "percent": 12.67
+        },
+        {
+          "code": 5,
+          "name": "Very High",
+          "colour": "#d7191c",
+          "pixels": 14140,
+          "area_km2": 3525.2,
+          "percent": 7.8
+        }
+      ],
+      "mapped_pixels": 181231,
+      "mapped_area_km2": 45186.7,
+      "basin_area_km2": 45042.6,
+      "basin_coverage_pct": 100.32,
+      "high_very_high_pct": 20.47,
+      "mean_score": 0.09506
+    }
+  }
+}

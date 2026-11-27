@@ -1,0 +1,60 @@
+{
+  "study_area": "Tana River County, Kenya",
+  "predictor_set": "S3_climate_vegetation",
+  "features": [
+    "SAVI",
+    "Rainfall",
+    "PCI",
+    "SoilMoisture"
+  ],
+  "ensemble_method": "geometric mean of Random Forest and XGBoost",
+  "metrics_shown": [
+    {
+      "model": "Random Forest",
+      "metric": "ROC-AUC",
+      "value": 0.82
+    },
+    {
+      "model": "XGBoost",
+      "metric": "ROC-AUC",
+      "value": 0.77
+    },
+    {
+      "model": "Ensemble (geometric mean of RF and XGBoost)",
+      "metric": "ROC-AUC",
+      "value": 0.8
+    }
+  ],
+  "metrics_source": "reported",
+  "test_file_metrics": [
+    {
+      "model": "Random Forest",
+      "metric": "ROC-AUC",
+      "value": 0.77,
+      "pr_auc": 0.158,
+      "tss": 0.476
+    },
+    {
+      "model": "XGBoost",
+      "metric": "ROC-AUC",
+      "value": 0.76,
+      "pr_auc": 0.173,
+      "tss": 0.435
+    },
+    {
+      "model": "Ensemble (arithmetic mean of RF and XGBoost)",
+      "metric": "ROC-AUC",
+      "value": 0.78,
+      "pr_auc": 0.169,
+      "tss": 0.478
+    }
+  ],
+  "thresholds": [
+    0.013890807597703047,
+    0.05704419389650727,
+    0.11699689132705421,
+    0.40859209984556133
+  ],
+  "class_basis": "5-fold spatial out-of-fold ensemble scores at presence records, training configuration cfg_accessible_200km_10to1",
+  "training": "Desert locust occurrence records and background points in Kenya, 2020"
+}

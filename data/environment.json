@@ -1,0 +1,576 @@
+{
+  "variables": [
+    {
+      "key": "Rainfall",
+      "label": "Rainfall (annual total)",
+      "unit": "mm/yr",
+      "group": "Climate",
+      "kind": "continuous",
+      "static": false,
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "basin_coverage_pct": 97.2,
+      "vmin": 191.999267578125,
+      "vmax": 1238.171875,
+      "gradient": [
+        "#ffffd9",
+        "#e1f3b2",
+        "#97d6b9",
+        "#40b5c4",
+        "#1f80b8",
+        "#24419a",
+        "#081d58"
+      ],
+      "source": "CHIRPS v2 daily, annual total (mm)"
+    },
+    {
+      "key": "Temperature",
+      "label": "Air temperature (annual mean)",
+      "unit": "\u00b0C",
+      "group": "Climate",
+      "kind": "continuous",
+      "static": false,
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "basin_coverage_pct": 97.0,
+      "vmin": 26.359344482421875,
+      "vmax": 28.67035675048828,
+      "gradient": [
+        "#313695",
+        "#6399c7",
+        "#bde2ee",
+        "#fffebe",
+        "#fdbf71",
+        "#ea5739",
+        "#a50026"
+      ],
+      "source": "ERA5-Land monthly, 2 m air temperature, annual mean (\u00b0C)"
+    },
+    {
+      "key": "Humidity",
+      "label": "Relative humidity (annual mean)",
+      "unit": "%",
+      "group": "Climate",
+      "kind": "continuous",
+      "static": false,
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "basin_coverage_pct": 97.0,
+      "vmin": 52.856239318847656,
+      "vmax": 75.2614517211914,
+      "gradient": [
+        "#f7fbff",
+        "#d6e6f4",
+        "#abd0e6",
+        "#6aaed6",
+        "#3787c0",
+        "#105ba4",
+        "#08306b"
+      ],
+      "source": "ERA5-Land monthly, relative humidity from temperature and dew point (Magnus), annual mean (%)"
+    },
+    {
+      "key": "PCI",
+      "label": "Precipitation concentration index",
+      "unit": "index",
+      "group": "Climate",
+      "kind": "continuous",
+      "static": false,
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "basin_coverage_pct": 97.2,
+      "vmin": 11.820222854614258,
+      "vmax": 44.759552001953125,
+      "gradient": [
+        "#f7f4f9",
+        "#e1d4e8",
+        "#cda0cd",
+        "#df64af",
+        "#df2179",
+        "#a90649",
+        "#67001f"
+      ],
+      "source": "CHIRPS v2 monthly totals, precipitation concentration index (Oliver 1980)"
+    },
+    {
+      "key": "SoilMoisture",
+      "label": "Soil moisture (0-7 cm)",
+      "unit": "m\u00b3/m\u00b3",
+      "group": "Soil",
+      "kind": "continuous",
+      "static": false,
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "basin_coverage_pct": 97.0,
+      "vmin": 0.11115945130586624,
+      "vmax": 0.29625430703163147,
+      "gradient": [
+        "#543005",
+        "#ad7021",
+        "#e7cf94",
+        "#f4f5f5",
+        "#98d7cd",
+        "#23867e",
+        "#003c30"
+      ],
+      "source": "ERA5-Land monthly, volumetric soil water 0-7 cm, annual mean (m\u00b3/m\u00b3)"
+    },
+    {
+      "key": "SoilType",
+      "label": "Soil texture class",
+      "unit": "class",
+      "group": "Soil",
+      "kind": "categorical",
+      "static": true,
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "basin_coverage_pct": 97.2,
+      "categories": [
+        {
+          "code": 1,
+          "name": "Clay",
+          "colour": "#d5c36b"
+        },
+        {
+          "code": 3,
+          "name": "Sandy clay",
+          "colour": "#9d3706"
+        },
+        {
+          "code": 4,
+          "name": "Clay loam",
+          "colour": "#ae868f"
+        },
+        {
+          "code": 6,
+          "name": "Sandy clay loam",
+          "colour": "#46d143"
+        },
+        {
+          "code": 7,
+          "name": "Loam",
+          "colour": "#368f20"
+        },
+        {
+          "code": 9,
+          "name": "Sandy loam",
+          "colour": "#ffd557"
+        },
+        {
+          "code": 11,
+          "name": "Loamy sand",
+          "colour": "#ff5a9d"
+        }
+      ],
+      "source": "OpenLandMap USDA texture class, 0 cm (class code)"
+    },
+    {
+      "key": "Elevation",
+      "label": "Elevation",
+      "unit": "m",
+      "group": "Terrain",
+      "kind": "continuous",
+      "static": true,
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "basin_coverage_pct": 97.2,
+      "vmin": 9.0,
+      "vmax": 457.0,
+      "gradient": [
+        "#333399",
+        "#00a0e8",
+        "#55dd77",
+        "#fefe98",
+        "#aa926b",
+        "#ab938e",
+        "#ffffff"
+      ],
+      "source": "SRTM 30 m (m)"
+    },
+    {
+      "key": "Slope",
+      "label": "Slope",
+      "unit": "degrees",
+      "group": "Terrain",
+      "kind": "continuous",
+      "static": true,
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "basin_coverage_pct": 97.2,
+      "vmin": 0.05796816572546959,
+      "vmax": 0.987065315246582,
+      "gradient": [
+        "#ffffe5",
+        "#fff1ae",
+        "#fece65",
+        "#fe9829",
+        "#e1640e",
+        "#a93c03",
+        "#662506"
+      ],
+      "source": "SRTM 30 m (degrees)"
+    },
+    {
+      "key": "TWI",
+      "label": "Topographic wetness index",
+      "unit": "index",
+      "group": "Terrain",
+      "kind": "continuous",
+      "static": true,
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "basin_coverage_pct": 97.2,
+      "vmin": 9.6688551902771,
+      "vmax": 20.57894763946533,
+      "gradient": [
+        "#f7fbff",
+        "#d6e6f4",
+        "#abd0e6",
+        "#6aaed6",
+        "#3787c0",
+        "#105ba4",
+        "#08306b"
+      ],
+      "source": "MERIT Hydro: ln(upstream area per unit width / tan slope)"
+    },
+    {
+      "key": "Elev_std",
+      "label": "Terrain roughness (elevation SD)",
+      "unit": "m",
+      "group": "Terrain",
+      "kind": "continuous",
+      "static": true,
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "basin_coverage_pct": 97.2,
+      "vmin": 0.4714045226573944,
+      "vmax": 6.879922389984131,
+      "gradient": [
+        "#000004",
+        "#2c115f",
+        "#721f81",
+        "#b73779",
+        "#f1605d",
+        "#feb078",
+        "#fcfdbf"
+      ],
+      "source": "SRTM 30 m, standard deviation in a 1 km window (m)"
+    },
+    {
+      "key": "NDVI",
+      "label": "NDVI",
+      "unit": "index",
+      "group": "Vegetation (Landsat)",
+      "kind": "continuous",
+      "static": false,
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "basin_coverage_pct": 97.2,
+      "vmin": 0.18154818594455718,
+      "vmax": 0.7208779907226562,
+      "gradient": [
+        "#ffffe5",
+        "#edf8b2",
+        "#bce395",
+        "#77c679",
+        "#379e54",
+        "#0b713b",
+        "#004529"
+      ],
+      "source": "Landsat 8/9 C2 L2, cloud-masked annual median"
+    },
+    {
+      "key": "EVI",
+      "label": "EVI",
+      "unit": "index",
+      "group": "Vegetation (Landsat)",
+      "kind": "continuous",
+      "static": false,
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "basin_coverage_pct": 97.2,
+      "vmin": 0.12429905474185944,
+      "vmax": 0.4660723173618314,
+      "gradient": [
+        "#ffffe5",
+        "#edf8b2",
+        "#bce395",
+        "#77c679",
+        "#379e54",
+        "#0b713b",
+        "#004529"
+      ],
+      "source": "Landsat 8/9 C2 L2, cloud-masked annual median"
+    },
+    {
+      "key": "SAVI",
+      "label": "SAVI",
+      "unit": "index",
+      "group": "Vegetation (Landsat)",
+      "kind": "continuous",
+      "static": false,
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "basin_coverage_pct": 97.2,
+      "vmin": 0.14196045100688934,
+      "vmax": 0.45461067438125535,
+      "gradient": [
+        "#ffffe5",
+        "#edf8b2",
+        "#bce395",
+        "#77c679",
+        "#379e54",
+        "#0b713b",
+        "#004529"
+      ],
+      "source": "Landsat 8/9 C2 L2, cloud-masked annual median (L = 0.5)"
+    },
+    {
+      "key": "LST",
+      "label": "Land surface temperature (daytime)",
+      "unit": "\u00b0C",
+      "group": "Vegetation (Landsat)",
+      "kind": "continuous",
+      "static": false,
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "basin_coverage_pct": 96.3,
+      "vmin": 32.91143798828125,
+      "vmax": 49.054744720458984,
+      "gradient": [
+        "#000004",
+        "#320a5e",
+        "#781c6d",
+        "#bc3754",
+        "#ed6925",
+        "#fbb61a",
+        "#fcffa4"
+      ],
+      "source": "Landsat 8/9 C2 L2 band 10, annual median (\u00b0C)"
+    },
+    {
+      "key": "TCI",
+      "label": "Temperature condition index",
+      "unit": "0-100",
+      "group": "Vegetation (Landsat)",
+      "kind": "continuous",
+      "static": false,
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "basin_coverage_pct": 96.3,
+      "vmin": 0.0,
+      "vmax": 100.0,
+      "gradient": [
+        "#a50026",
+        "#ea5739",
+        "#fdbf6f",
+        "#feffbe",
+        "#b7e075",
+        "#4bb05c",
+        "#006837"
+      ],
+      "source": "From Landsat LST, 2014-2024 per-pixel min/max (0-100)"
+    },
+    {
+      "key": "VHI",
+      "label": "Vegetation health index",
+      "unit": "0-100",
+      "group": "Vegetation (Landsat)",
+      "kind": "continuous",
+      "static": false,
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "basin_coverage_pct": 96.3,
+      "vmin": 2.499528408050537,
+      "vmax": 100.0,
+      "gradient": [
+        "#a50026",
+        "#ea5739",
+        "#fdbf6f",
+        "#feffbe",
+        "#b7e075",
+        "#4bb05c",
+        "#006837"
+      ],
+      "source": "0.5 x VCI + 0.5 x TCI, Landsat 2014-2024 baseline (0-100)"
+    },
+    {
+      "key": "LULC",
+      "label": "Land use / land cover (ESA WorldCover 2021)",
+      "unit": "class",
+      "group": "Land cover",
+      "kind": "categorical",
+      "static": true,
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "basin_coverage_pct": 97.2,
+      "categories": [
+        {
+          "code": 10,
+          "name": "Tree cover",
+          "colour": "#006400"
+        },
+        {
+          "code": 20,
+          "name": "Shrubland",
+          "colour": "#ffbb22"
+        },
+        {
+          "code": 30,
+          "name": "Grassland",
+          "colour": "#ffff4c"
+        },
+        {
+          "code": 40,
+          "name": "Cropland",
+          "colour": "#f096ff"
+        },
+        {
+          "code": 50,
+          "name": "Built-up",
+          "colour": "#fa0000"
+        },
+        {
+          "code": 60,
+          "name": "Bare / sparse vegetation",
+          "colour": "#b4b4b4"
+        },
+        {
+          "code": 80,
+          "name": "Permanent water",
+          "colour": "#0064c8"
+        },
+        {
+          "code": 90,
+          "name": "Herbaceous wetland",
+          "colour": "#0096a0"
+        },
+        {
+          "code": 95,
+          "name": "Mangroves",
+          "colour": "#00cf75"
+        }
+      ],
+      "source": "ESA WorldCover 2021 v200 (class code)"
+    }
+  ]
+}
